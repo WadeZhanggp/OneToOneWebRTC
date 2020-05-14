@@ -4,51 +4,24 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cbl.base.activity.RxMvpBaseActivity;
+import com.cbl.base.log.HexLog;
+import com.cbl.base.tools.ToastUtils;
 import com.cbl.base.view.FindViewById;
+import com.example.webrtcandroid.App;
 import com.example.webrtcandroid.Contract.CallContract;
 import com.example.webrtcandroid.R;
 import com.example.webrtcandroid.presenter.CallPresenter;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.webrtc.AudioSource;
-import org.webrtc.AudioTrack;
-import org.webrtc.Camera1Enumerator;
-import org.webrtc.Camera2Enumerator;
-import org.webrtc.CameraEnumerator;
-import org.webrtc.DataChannel;
-import org.webrtc.DefaultVideoDecoderFactory;
-import org.webrtc.DefaultVideoEncoderFactory;
+
 import org.webrtc.EglBase;
-import org.webrtc.IceCandidate;
-import org.webrtc.Logging;
-import org.webrtc.MediaConstraints;
-import org.webrtc.MediaStream;
-import org.webrtc.MediaStreamTrack;
-import org.webrtc.PeerConnection;
-import org.webrtc.PeerConnectionFactory;
 import org.webrtc.RendererCommon;
-import org.webrtc.RtpReceiver;
-import org.webrtc.SessionDescription;
-import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.SurfaceViewRenderer;
-import org.webrtc.VideoCapturer;
-import org.webrtc.VideoDecoderFactory;
-import org.webrtc.VideoEncoderFactory;
-import org.webrtc.VideoSource;
-import org.webrtc.VideoTrack;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
-import utils.Constant;
-import utils.signal.OnSignalEventListener;
-import utils.signal.SignalClient;
 
 
 public class CallActivity extends RxMvpBaseActivity<CallContract.Presenter> implements CallContract.View  {
@@ -63,6 +36,8 @@ public class CallActivity extends RxMvpBaseActivity<CallContract.Presenter> impl
     private
     @FindViewById(id = R.id.RemoteSurfaceView)
     SurfaceViewRenderer mRemoteSurfaceView;
+
+    private long exitTime = 0;
 
 
     private String mState = "init";
@@ -114,10 +89,14 @@ public class CallActivity extends RxMvpBaseActivity<CallContract.Presenter> impl
 
     @Override
     protected void onDestroy() {
+
+        //先销毁
+        mvpPresenter.rtcDestory();
+
         super.onDestroy();
         mLocalSurfaceView.release();
         mRemoteSurfaceView.release();
-        mvpPresenter.rtcDestory();
+
 
     }
 
@@ -165,6 +144,22 @@ public class CallActivity extends RxMvpBaseActivity<CallContract.Presenter> impl
         }
         finish();
     }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                ToastUtils.showToast(App.getInstance().getContext(),R.string.toast_press_again);
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
 
 }

@@ -3,4 +3,5 @@
     <string name="home_join">Join</string>
     <string name="home_setting">Setting</string>
     <string name="home_room_id_hint">Please enter Room Id</string>
+    <string name="toast_press_again">Press again to exit the call</string>
 </resources>
