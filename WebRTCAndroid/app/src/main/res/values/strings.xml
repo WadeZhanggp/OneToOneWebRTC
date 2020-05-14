@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">WebRTCAndroid</string>
+    <string name="app_name">RTC ROOM</string>
+    <string name="home_join">Join</string>
+    <string name="home_setting">Setting</string>
+    <string name="home_room_id_hint">Please enter Room Id</string>
 </resources>

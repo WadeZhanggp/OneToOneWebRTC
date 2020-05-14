@@ -17,7 +17,7 @@ public class SignalClient {
 
     private static final String TAG = "SignalClient";
     private static SignalClient mInstance;
-    private OnSignalEventListener mOnSignalEventListener;
+    public OnSignalEventListener mOnSignalEventListener;
 
     private Socket mSocket;
     private String mRoomName;
