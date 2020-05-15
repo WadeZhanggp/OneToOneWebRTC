@@ -1,0 +1,15 @@
+platform :ios,'11.0'
+
+use_frameworks!
+
+target 'WebRTCiOS' do
+
+pod 'Socket.IO-Client-Swift', '~> 13.3.0'
+pod 'GoogleWebRTC'
+pod 'MBProgressHUD'
+# 响应函数式框架
+pod 'ReactiveObjC'
+# 自动布局
+ pod 'Masonry'
+
+end

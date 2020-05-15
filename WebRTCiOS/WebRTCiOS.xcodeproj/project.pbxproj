@@ -3,19 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		137842FD7ED16A28F2313EA6 /* Pods_WebRTCiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56206E9FA1D6BC90D2EBEC6D /* Pods_WebRTCiOS.framework */; };
 		3966D0C7246D3DED00E01E45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D0C6246D3DED00E01E45 /* AppDelegate.m */; };
-		3966D0CA246D3DED00E01E45 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D0C9246D3DED00E01E45 /* SceneDelegate.m */; };
-		3966D0CD246D3DED00E01E45 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D0CC246D3DED00E01E45 /* ViewController.m */; };
-		3966D0D0246D3DED00E01E45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3966D0CE246D3DED00E01E45 /* Main.storyboard */; };
 		3966D0D2246D3DF400E01E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3966D0D1246D3DF400E01E45 /* Assets.xcassets */; };
 		3966D0D5246D3DF400E01E45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3966D0D3246D3DF400E01E45 /* LaunchScreen.storyboard */; };
 		3966D0D8246D3DF400E01E45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D0D7246D3DF400E01E45 /* main.m */; };
 		3966D0E2246D3DF400E01E45 /* WebRTCiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D0E1246D3DF400E01E45 /* WebRTCiOSTests.m */; };
 		3966D0ED246D3DF400E01E45 /* WebRTCiOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D0EC246D3DF400E01E45 /* WebRTCiOSUITests.m */; };
+		3966D100246E1BBB00E01E45 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D0FE246E1BBB00E01E45 /* HomeViewController.m */; };
+		3966D10A246E227100E01E45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3966D108246E227100E01E45 /* Main.storyboard */; };
+		3966D110246E726200E01E45 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D10F246E726200E01E45 /* CallViewController.m */; };
+		3966D114246E73F700E01E45 /* SignalClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D113246E73F700E01E45 /* SignalClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3900DDB86787C0EE215B0AFC /* Pods-WebRTCiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebRTCiOS.debug.xcconfig"; path = "Target Support Files/Pods-WebRTCiOS/Pods-WebRTCiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		3966D0C2246D3DED00E01E45 /* WebRTCiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebRTCiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3966D0C5246D3DED00E01E45 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3966D0C6246D3DED00E01E45 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3966D0C8246D3DED00E01E45 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		3966D0C9246D3DED00E01E45 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		3966D0CB246D3DED00E01E45 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3966D0CC246D3DED00E01E45 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		3966D0CF246D3DED00E01E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3966D0D1246D3DF400E01E45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3966D0D4246D3DF400E01E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3966D0D6246D3DF400E01E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +52,17 @@
 		3966D0E8246D3DF400E01E45 /* WebRTCiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebRTCiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3966D0EC246D3DF400E01E45 /* WebRTCiOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebRTCiOSUITests.m; sourceTree = "<group>"; };
 		3966D0EE246D3DF400E01E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3966D0FD246E1BBB00E01E45 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		3966D0FE246E1BBB00E01E45 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		3966D109246E227100E01E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3966D10C246E342400E01E45 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		3966D10D246E682600E01E45 /* GloalDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GloalDefine.h; sourceTree = "<group>"; };
+		3966D10E246E726200E01E45 /* CallViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
+		3966D10F246E726200E01E45 /* CallViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
+		3966D112246E73F700E01E45 /* SignalClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignalClient.h; sourceTree = "<group>"; };
+		3966D113246E73F700E01E45 /* SignalClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignalClient.m; sourceTree = "<group>"; };
+		56206E9FA1D6BC90D2EBEC6D /* Pods_WebRTCiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebRTCiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C056A1D808CF41A867C7AAF7 /* Pods-WebRTCiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebRTCiOS.release.xcconfig"; path = "Target Support Files/Pods-WebRTCiOS/Pods-WebRTCiOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				137842FD7ED16A28F2313EA6 /* Pods_WebRTCiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F15C0A23C180624A136BC3F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56206E9FA1D6BC90D2EBEC6D /* Pods_WebRTCiOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3966D0B9246D3DED00E01E45 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +106,8 @@
 				3966D0E0246D3DF400E01E45 /* WebRTCiOSTests */,
 				3966D0EB246D3DF400E01E45 /* WebRTCiOSUITests */,
 				3966D0C3246D3DED00E01E45 /* Products */,
+				A63581FDCF6A24830B0587F6 /* Pods */,
+				0F15C0A23C180624A136BC3F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,17 +124,19 @@
 		3966D0C4246D3DED00E01E45 /* WebRTCiOS */ = {
 			isa = PBXGroup;
 			children = (
+				3966D111246E73D700E01E45 /* Utils */,
+				3966D0FC246E1B8D00E01E45 /* Controller */,
+				3966D0FB246E1B8D00E01E45 /* Model */,
+				3966D0FA246E1B8D00E01E45 /* View */,
 				3966D0C5246D3DED00E01E45 /* AppDelegate.h */,
 				3966D0C6246D3DED00E01E45 /* AppDelegate.m */,
-				3966D0C8246D3DED00E01E45 /* SceneDelegate.h */,
-				3966D0C9246D3DED00E01E45 /* SceneDelegate.m */,
-				3966D0CB246D3DED00E01E45 /* ViewController.h */,
-				3966D0CC246D3DED00E01E45 /* ViewController.m */,
-				3966D0CE246D3DED00E01E45 /* Main.storyboard */,
 				3966D0D1246D3DF400E01E45 /* Assets.xcassets */,
+				3966D108246E227100E01E45 /* Main.storyboard */,
 				3966D0D3246D3DF400E01E45 /* LaunchScreen.storyboard */,
 				3966D0D6246D3DF400E01E45 /* Info.plist */,
 				3966D0D7246D3DF400E01E45 /* main.m */,
+				3966D10C246E342400E01E45 /* PrefixHeader.pch */,
+				3966D10D246E682600E01E45 /* GloalDefine.h */,
 			);
 			path = WebRTCiOS;
 			sourceTree = "<group>";
@@ -137,6 +159,49 @@
 			path = WebRTCiOSUITests;
 			sourceTree = "<group>";
 		};
+		3966D0FA246E1B8D00E01E45 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3966D0FB246E1B8D00E01E45 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3966D0FC246E1B8D00E01E45 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3966D0FD246E1BBB00E01E45 /* HomeViewController.h */,
+				3966D0FE246E1BBB00E01E45 /* HomeViewController.m */,
+				3966D10E246E726200E01E45 /* CallViewController.h */,
+				3966D10F246E726200E01E45 /* CallViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3966D111246E73D700E01E45 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3966D112246E73F700E01E45 /* SignalClient.h */,
+				3966D113246E73F700E01E45 /* SignalClient.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A63581FDCF6A24830B0587F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3900DDB86787C0EE215B0AFC /* Pods-WebRTCiOS.debug.xcconfig */,
+				C056A1D808CF41A867C7AAF7 /* Pods-WebRTCiOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +209,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3966D0F1246D3DF400E01E45 /* Build configuration list for PBXNativeTarget "WebRTCiOS" */;
 			buildPhases = (
+				0940845CA1B162C463027EE8 /* [CP] Check Pods Manifest.lock */,
 				3966D0BE246D3DED00E01E45 /* Sources */,
 				3966D0BF246D3DED00E01E45 /* Frameworks */,
 				3966D0C0246D3DED00E01E45 /* Resources */,
+				70ECD50243A169722C2E6582 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -242,7 +309,7 @@
 			files = (
 				3966D0D5246D3DF400E01E45 /* LaunchScreen.storyboard in Resources */,
 				3966D0D2246D3DF400E01E45 /* Assets.xcassets in Resources */,
-				3966D0D0246D3DED00E01E45 /* Main.storyboard in Resources */,
+				3966D10A246E227100E01E45 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,15 +329,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0940845CA1B162C463027EE8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WebRTCiOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70ECD50243A169722C2E6582 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WebRTCiOS/Pods-WebRTCiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WebRTCiOS/Pods-WebRTCiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WebRTCiOS/Pods-WebRTCiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3966D0BE246D3DED00E01E45 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3966D0CD246D3DED00E01E45 /* ViewController.m in Sources */,
 				3966D0C7246D3DED00E01E45 /* AppDelegate.m in Sources */,
+				3966D114246E73F700E01E45 /* SignalClient.m in Sources */,
 				3966D0D8246D3DF400E01E45 /* main.m in Sources */,
-				3966D0CA246D3DED00E01E45 /* SceneDelegate.m in Sources */,
+				3966D110246E726200E01E45 /* CallViewController.m in Sources */,
+				3966D100246E1BBB00E01E45 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,20 +416,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3966D0CE246D3DED00E01E45 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3966D0CF246D3DED00E01E45 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3966D0D3246D3DF400E01E45 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3966D0D4246D3DF400E01E45 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3966D108246E227100E01E45 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3966D109246E227100E01E45 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -437,35 +547,41 @@
 		};
 		3966D0F2246D3DF400E01E45 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3900DDB86787C0EE215B0AFC /* Pods-WebRTCiOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YGJUF6B3RM;
 				INFOPLIST_FILE = WebRTCiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zgp.testGCDDemo.WebRTCiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		3966D0F3246D3DF400E01E45 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C056A1D808CF41A867C7AAF7 /* Pods-WebRTCiOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YGJUF6B3RM;
 				INFOPLIST_FILE = WebRTCiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zgp.testGCDDemo.WebRTCiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

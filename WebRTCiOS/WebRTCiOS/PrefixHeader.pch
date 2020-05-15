@@ -1,0 +1,23 @@
+//
+//  PrefixHeader.pch
+//  WebRTCiOS
+//
+//  Created by zhangguangpeng on 2020/5/15.
+//  Copyright © 2020 zhangguangpeng. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+// 响应式框架
+#import "ReactiveObjC/ReactiveObjC.h"
+// 自动布局框架
+#import <Masonry/Masonry.h>
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define PrefixHeader_pch
+
+
+
+
+#endif /* PrefixHeader_pch */
