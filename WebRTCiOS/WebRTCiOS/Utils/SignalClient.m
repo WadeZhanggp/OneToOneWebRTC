@@ -59,9 +59,107 @@ static SignalClient *mInstance = nil;
         [self.delegate connectError];
     }];
     
+    [socket on:@"reconnectAttempt" callback:^(NSArray * data, SocketAckEmitter * ack) {
+        NSLog(@"socket reconnectAttempt");
+        [self.delegate reconectAttempt];
+    }];
+    
+    [socket on:@"joined" callback:^(NSArray * data, SocketAckEmitter * ack) {
+        
+        NSString *room = [data objectAtIndex:0];
+        NSLog(@"joined room(%@)",room);
+        [self.delegate joined:room];
+    }];
+    
+    [socket on:@"leaved" callback:^(NSArray * data, SocketAckEmitter * ack) {
+        
+        NSString *room = [data objectAtIndex:0];
+        NSLog(@"leaved room(%@)",room);
+        [self.delegate leaved:room];
+    }];
+    
+    [socket on:@"full" callback:^(NSArray * data, SocketAckEmitter * ack) {
+        
+        NSString *room = [data objectAtIndex:0];
+        NSLog(@"room(%@) is full",room);
+        [self.delegate full:room];
+    }];
+    
+    [socket on:@"otherjoin" callback:^(NSArray * data, SocketAckEmitter * ack) {
+        
+        NSString* room = [data objectAtIndex:0];
+        if (data.count > 2) {
+            return ;
+        }
+        NSString* uid = [data objectAtIndex:1];
+        
+        NSLog(@"other user(%@) has been joined into room(%@)", room, uid);
+        [self.delegate otherjoin:room user:uid];
+    }];
+    
+   
+    [socket on:@"bye" callback:^(NSArray * data, SocketAckEmitter * ack) {
+        
+        NSString *room = [data objectAtIndex:0];
+        NSString* uid = [data objectAtIndex:1];
+        NSLog(@"user(%@) has leaved from room(%@)", room, uid);
+        [self.delegate byeFrom:room user:uid];
+    }];
     
     
     
+    [socket on:@"message" callback:^(NSArray * data, SocketAckEmitter * ack) {
+        
+        NSString *room = [data objectAtIndex:0];
+        NSDictionary* msg = [data objectAtIndex:1];
+        NSLog(@"onMessage, room(%@), data(%@)", room, msg);
+        NSString *type = msg[@"type"];
+        if ([type isEqualToString:@"offer"]) {
+            [self.delegate offer:room message:msg];
+        }else if([type isEqualToString:@"answer"]) {
+            [self.delegate answer:room message:msg];
+        }else if([type isEqualToString:@"candidate"]) {
+            [self.delegate candidate:room message:msg];
+        }else {
+            NSLog(@"the msg is invalid!");
+        }
+        
+    }];
+    
+    //连接超时时间设置为3秒
+    [socket connectWithTimeoutAfter:3.0 withHandler:^{
+        NSLog(@"socket connect_timeout 3.0s");
+        [self.delegate connectTimeout];
+    }];
+    
+}
+
+- (void)joinRoom:(NSString *)room {
+    NSLog(@"join room(%@)", room);
+    if (socket.status == SocketIOStatusConnected) {
+        [socket emit:@"join" with:@[room]];
+    }
+}
+
+- (void)leaveRoom:(NSString *)room {
+    NSLog(@"leave room(%@)", room);
+    if (socket.status == SocketIOStatusConnected) {
+        [socket emit:@"leave" with:@[room]];
+    }
+    
+}
+
+- (void)sendMessage:(NSString *)room withMsg:(NSDictionary *)msg {
+    if (socket.status == SocketIOStatusConnected) {
+        if (msg) {
+            NSLog(@"json:%@", msg);
+            [socket emit:@"message" with:@[room, msg]];
+        }else {
+            NSLog(@"error: msg is nil!");
+        }
+    }else {
+        NSLog(@"the socket has been disconnect!");
+    }
 }
 
 

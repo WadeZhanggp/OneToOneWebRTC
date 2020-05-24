@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CallViewController : UIViewController
 
+- (instancetype) initAddr:(NSString*) addr withRoom:(NSString*) room;
+
 @end
 
 NS_ASSUME_NONNULL_END

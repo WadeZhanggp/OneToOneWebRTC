@@ -31,9 +31,18 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SignalClient : NSObject
 
 +(SignalClient *) getInstance;
+/// 创建连接
+/// @param addr 地址
 - (void) createConnect:(NSString *)addr;
+/// 加入房间
+/// @param room 房间号
 - (void) joinRoom:(NSString *)room;
+/// 离开房间
+/// @param room 房间号
 - (void) leaveRoom:(NSString *)room;
+/// 发送消息
+/// @param room 房间号
+/// @param msg 信息
 - (void) sendMessage:(NSString *)room withMsg:(NSDictionary *)msg;
 
 @property (weak, nonatomic) id<SignalEventDelegate> delegate;
