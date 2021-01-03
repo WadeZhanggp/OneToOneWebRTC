@@ -15,10 +15,10 @@
 #import "ReactiveObjC/ReactiveObjC.h"
 
 //static NSString *const RTCSTUNServerURL = @"stun:stun.l.google.com:19302";
-static NSString *const RTCSTUNServerURL = @"turn:xxx.xxx.xxx:3478";
+static NSString *const RTCSTUNServerURL = @"stun:stun.wadezhanggp.xyz:3478";
 static int logY = 0;
 
-@interface CallViewController ()<SignalEventDelegate, RTCPeerConnectionDelegate, RTCVideoViewDelegate>
+@interface CallViewController ()<SignalEventDelegate, RTCPeerConnectionDelegate, RTCVideoViewDelegate,AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @property (copy, nonatomic) NSString *myAddr;
 @property (copy, nonatomic) NSString *myRoom;
@@ -39,9 +39,11 @@ static int logY = 0;
 @property (strong, nonatomic) dispatch_source_t timer;
 
 
+
 @end
 
 @implementation CallViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,7 +58,10 @@ static int logY = 0;
     self.sigclient = [SignalClient getInstance];
     self.sigclient.delegate = self;
     self.myState = @"init";
+    [self.sigclient createConnect:self.myAddr];
     [self initFunction];
+    
+    
     
 }
 
@@ -71,7 +76,8 @@ static int logY = 0;
     
     @weakify(self)
     [[self.leaveButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-         @strongify(self)
+        @strongify(self)
+        [self.navigationController popViewControllerAnimated:YES];
         [self willMoveToParentViewController:nil];
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
@@ -92,6 +98,7 @@ static int logY = 0;
         NSLog(@"leave room(%@)", self.myRoom);
         [self addLogToScreen: @"leave room(%@)", self.myRoom];
         
+        
     }];
     
 }
@@ -102,21 +109,21 @@ static int logY = 0;
     NSLog(@"Success to set remote offer SDP");
     
     [pc answerForConstraints:[self defaultPeerConnContraints]
-                           completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
-                               if(!error){
-                                   NSLog(@"Success to create local answer sdp!");
-                                   __weak RTCPeerConnection* weakPeerConn = pc;
-                                   [self setLocalAnswer:weakPeerConn withSdp:sdp];
-                                   
-                               }else{
-                                   NSLog(@"Failure to create local answer sdp!");
-                               }
-                           }];
+           completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
+        if(!error){
+            NSLog(@"Success to create local answer sdp!");
+            __weak RTCPeerConnection* weakPeerConn = pc;
+            [self setLocalAnswer:weakPeerConn withSdp:sdp];
+            
+        }else{
+            NSLog(@"Failure to create local answer sdp!");
+        }
+    }];
 }
 
 #pragma mark 发起语言通话
 - (void) doStartCall {
-NSLog(@"Start Call, Wait ...");
+    NSLog(@"Start Call, Wait ...");
     [self addLogToScreen: @"Start Call, Wait ..."];
     if (!self.peerConnection) {
         self.peerConnection = [self createPeerConnection];
@@ -181,9 +188,9 @@ NSLog(@"Start Call, Wait ...");
 - (RTCMediaConstraints*) defaultPeerConnContraints {
     RTCMediaConstraints* mediaConstraints =
     [[RTCMediaConstraints alloc] initWithMandatoryConstraints:@{
-                                                                kRTCMediaConstraintsOfferToReceiveAudio:kRTCMediaConstraintsValueTrue,
-                                                                kRTCMediaConstraintsOfferToReceiveVideo:kRTCMediaConstraintsValueTrue
-                                                                }
+        kRTCMediaConstraintsOfferToReceiveAudio:kRTCMediaConstraintsValueTrue,
+        kRTCMediaConstraintsOfferToReceiveVideo:kRTCMediaConstraintsValueTrue
+    }
                                           optionalConstraints:@{ @"DtlsSrtpKeyAgreement" : @"true" }];
     return mediaConstraints;
 }
@@ -191,9 +198,10 @@ NSLog(@"Start Call, Wait ...");
 #pragma mark 初始化STUN Server （ICE Server）
 - (RTCIceServer *)defaultSTUNServer {
     return [[RTCIceServer alloc] initWithURLStrings:@[RTCSTUNServerURL]
-                                           username:@"xxx"
-                                         credential:@"xxx"];
+                                           username:@"WadeZhang"
+                                         credential:@"zhang503"];
 }
+
 
 #pragma mark 创建peerconnect
 - (RTCPeerConnection *)createPeerConnection {
@@ -203,20 +211,20 @@ NSLog(@"Start Call, Wait ...");
         self.ICEServers = [NSMutableArray array];
         [self.ICEServers addObject:[self defaultSTUNServer]];
     }
-
+    
     //用工厂来创建连接
     RTCConfiguration* configuration = [[RTCConfiguration alloc] init];
     [configuration setIceServers:self.ICEServers];
     RTCPeerConnection* conn = [self.factory
-                                     peerConnectionWithConfiguration:configuration
-                                                         constraints:[self defaultPeerConnContraints]
-                                                            delegate:self];
-
+                               peerConnectionWithConfiguration:configuration
+                               constraints:[self defaultPeerConnContraints]
+                               delegate:self];
+    
     
     NSArray<NSString*>* mediaStreamLabels = @[@"ARDAMS"];
     [conn addTrack:self.videoTrack streamIds:mediaStreamLabels];
     [conn addTrack:self.audioTrack streamIds:mediaStreamLabels];
-
+    
     return conn;
 }
 
@@ -275,8 +283,10 @@ NSLog(@"Start Call, Wait ...");
         AVCaptureDeviceFormat *format = [[RTCCameraVideoCapturer supportedFormatsForDevice:device] lastObject];
         CGFloat fps = [[format videoSupportedFrameRateRanges] firstObject].maxFrameRate;
         self.videoTrack = [self.factory videoTrackWithSource:videoSource trackId:@"ARDAMSv0"];
+        //self.localVideoView.sampleBufferDelegate.
         self.localVideoView.captureSession = self.capture.captureSession;
         [self.capture startCaptureWithDevice:device format:format fps:fps];
+        
     }
     
 }
@@ -316,16 +326,16 @@ NSLog(@"Start Call, Wait ...");
 
 - (void)otherjoin:(nonnull NSString *)room user:(nonnull NSString *)uid {
     NSLog(@"other user(%@) has been joined into room(%@) notify!", uid, room);
-       [self addLogToScreen: @"other user(%@) has been joined into room(%@) notify!", uid, room];
+    [self addLogToScreen: @"other user(%@) has been joined into room(%@) notify!", uid, room];
     if([self.myState isEqualToString:@"joined_unbind"]){
         if (!self.peerConnection) {
             self.peerConnection = [self createPeerConnection];
-           }
-       }
-       
+        }
+    }
+    
     self.myState =@"joined_conn";
-       //调用call， 进行媒体协商
-       [self doStartCall];
+    //调用call， 进行媒体协商
+    [self doStartCall];
 }
 
 - (void)full:(nonnull NSString *)room {
@@ -370,10 +380,10 @@ NSLog(@"Start Call, Wait ...");
     NSLog(@"have received a answer message %@", dict);
     NSString *remoteAnswerSdp = dict[@"sdp"];
     RTCSessionDescription *remoteSdp = [[RTCSessionDescription alloc]
-                                           initWithType:RTCSdpTypeAnswer
-                                                    sdp: remoteAnswerSdp];
+                                        initWithType:RTCSdpTypeAnswer
+                                        sdp: remoteAnswerSdp];
     [self.peerConnection setRemoteDescription:remoteSdp
-                       completionHandler:^(NSError * _Nullable error) {
+                            completionHandler:^(NSError * _Nullable error) {
         if(!error){
             NSLog(@"Success to set remote Answer SDP");
         }else{
@@ -458,8 +468,8 @@ NSLog(@"Start Call, Wait ...");
 }
 
 /** Called when a remote peer closes a stream.
-*  This is not called when RTCSdpSemanticsUnifiedPlan is specified.
-*/
+ *  This is not called when RTCSdpSemanticsUnifiedPlan is specified.
+ */
 - (void)peerConnection:(nonnull RTCPeerConnection *)peerConnection didRemoveStream:(nonnull RTCMediaStream *)stream {
     NSLog(@"%s",__func__);
 }
@@ -484,15 +494,15 @@ NSLog(@"Start Call, Wait ...");
     NSLog(@"%s",__func__);
     NSString* weakMyRoom = self.myRoom;
     dispatch_async(dispatch_get_main_queue(), ^{
-    
+        
         NSDictionary* dict = [[NSDictionary alloc] initWithObjects:@[@"candidate",
-                                                                [NSString stringWithFormat:@"%d", candidate.sdpMLineIndex],
-                                                                candidate.sdpMid,
-                                                                candidate.sdp]
+                                                                     [NSString stringWithFormat:@"%d", candidate.sdpMLineIndex],
+                                                                     candidate.sdpMid,
+                                                                     candidate.sdp]
                                                            forKeys:@[@"type", @"label", @"id", @"candidate"]];
-    
+        
         [[SignalClient getInstance] sendMessage: weakMyRoom
-                                    withMsg:dict];
+                                        withMsg:dict];
     });
 }
 
@@ -511,18 +521,28 @@ NSLog(@"Start Call, Wait ...");
     
     RTCMediaStreamTrack* track = rtpReceiver.track;
     if([track.kind isEqualToString:kRTCMediaStreamTrackKindVideo]){
-    
-         if(!self.remoteVideoView){
-             NSLog(@"error:remoteVideoView have not been created!");
-             return;
-         }
+        
+        if(!self.remoteVideoView){
+            NSLog(@"error:remoteVideoView have not been created!");
+            return;
+        }
         self.remoteVideoTrack = (RTCVideoTrack*)track;
         [self.remoteVideoTrack addRenderer: self.remoteVideoView];
-     }
+    }
 }
+
+
 
 #pragma mark - RTCEAGLVideoViewDelegate
 - (void)videoView:(id<RTCVideoRenderer>)videoView didChangeVideoSize:(CGSize)size {
+    
+}
+
+#pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
+//当数据缓冲区(data buffer)一有数据时，AVFoundation就调用该方法。在该代理方法中，我们可以获取视频帧、处理视频帧、显示视频帧。实时滤镜就是在这里进行处理的。在这个方法中将缓冲区中的视频数据（就是帧图片）输出到要显示的layer上。
+- (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
+    
+    NSLog(@"output = %@,sampleBuffer = %@ ",output,sampleBuffer);
     
 }
 
@@ -539,9 +559,9 @@ NSLog(@"Start Call, Wait ...");
     }];
     
     [self.leaveButton setFrame:CGRectMake(self.view.bounds.size.width/2-40,
-    self.view.bounds.size.height-140,
-    80,
-    80)];
+                                          self.view.bounds.size.height-140,
+                                          80,
+                                          80)];
     
     [self.leaveButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);

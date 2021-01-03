@@ -111,7 +111,9 @@ public class CallPresenter extends RxBasePresenterImpl<CallContract.View> implem
     @Override
     public void videoCaptureStop() {
         try {
-            mVideoCapturer.stopCapture();
+            if (mVideoCapturer != null) {
+                mVideoCapturer.stopCapture();
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -375,9 +377,9 @@ public class CallPresenter extends RxBasePresenterImpl<CallContract.View> implem
         LinkedList<PeerConnection.IceServer> iceServers = new LinkedList<PeerConnection.IceServer>();
 
         PeerConnection.IceServer ice_server =
-                PeerConnection.IceServer.builder("turn:xxxx:3478")
-                        .setPassword("xxx")
-                        .setUsername("xxx")
+                PeerConnection.IceServer.builder("stun:stun.wadezhanggp.xyz:3478")
+                        .setPassword("zhang503")
+                        .setUsername("WadeZhang")
                         .createIceServer();
 
         iceServers.add(ice_server);

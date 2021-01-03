@@ -1,0 +1,32 @@
+checking for -Werror=unknown-warning-option... no
+Failed commandline was:
+--------------------------------------------------
+xcrun -sdk iphonesimulator clang conftest.c  -Wall -I. -I$(SRCPATH) -arch i386 -mios-simulator-version-min=5.0  -Werror=unknown-warning-option   -arch i386 -mios-simulator-version-min=5.0 -o conftest
+Undefined symbols for architecture i386:
+  "start", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture i386
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+--------------------------------------------------
+Failed program was:
+--------------------------------------------------
+int main (void) {  return 0; }
+--------------------------------------------------
+x264 configure script
+Command line options: "--enable-static" "--enable-pic" "--disable-cli" "--host=i386-apple-darwin" "--extra-cflags=-arch" "i386" "-mios-simulator-version-min=5.0" "--extra-asflags=" "--extra-ldflags=-arch" "i386" "-mios-simulator-version-min=5.0" "--prefix=/Users/zhangguangpeng/Documents/webrtc/OneToOneWebRTC/FFmpeg/iOSBuild/x264/thin-x264/i386"
+
+checking whether xcrun -sdk iphonesimulator clang works... no
+Failed commandline was:
+--------------------------------------------------
+xcrun -sdk iphonesimulator clang conftest.c -m32  -Wall -I. -I$(SRCPATH) -arch i386 -mios-simulator-version-min=5.0 -march=i686 -mfpmath=sse -msse -msse2    -m32  -arch i386 -mios-simulator-version-min=5.0 -lm -o conftest
+Undefined symbols for architecture i386:
+  "start", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture i386
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+--------------------------------------------------
+Failed program was:
+--------------------------------------------------
+int main (void) {  return 0; }
+--------------------------------------------------
+DIED: No working C compiler found.

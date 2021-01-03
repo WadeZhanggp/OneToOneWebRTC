@@ -1,6 +1,6 @@
 PODS:
   - GoogleWebRTC (1.1.28604)
-  - Masonry (1.0.2)
+  - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - ReactiveObjC (3.1.1)
   - Socket.IO-Client-Swift (13.3.1):
@@ -9,7 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - GoogleWebRTC
-  - Masonry
+  - Masonry (= 1.1.0)
   - MBProgressHUD
   - ReactiveObjC
   - Socket.IO-Client-Swift (~> 13.3.0)
@@ -25,12 +25,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   GoogleWebRTC: 006112977cf03b7ee4fb898ae1e2016e2312ee0b
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   Socket.IO-Client-Swift: 79f8f85fa44881838175a20f9bd2c32bef2c9d37
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: 9539a68f0425ce0b674f3aba6219e790a9629025
+PODFILE CHECKSUM: 991ed9f0d14a599f1037aacc5aa4c77c306d63a0
 
 COCOAPODS: 1.7.4

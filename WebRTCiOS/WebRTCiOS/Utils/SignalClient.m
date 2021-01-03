@@ -91,7 +91,7 @@ static SignalClient *mInstance = nil;
         if (data.count > 2) {
             return ;
         }
-        NSString* uid = [data objectAtIndex:1];
+        NSString* uid = [data objectAtIndex:0];
         
         NSLog(@"other user(%@) has been joined into room(%@)", room, uid);
         [self.delegate otherjoin:room user:uid];

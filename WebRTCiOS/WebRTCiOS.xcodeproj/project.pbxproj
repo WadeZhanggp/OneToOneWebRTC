@@ -187,10 +187,58 @@
 		3966D111246E73D700E01E45 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				39ECCF22249C588000FC394F /* Encoder */,
+				39ECCF1F249C584400FC394F /* Capture */,
 				3966D112246E73F700E01E45 /* SignalClient.h */,
 				3966D113246E73F700E01E45 /* SignalClient.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		39ECCF1F249C584400FC394F /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				39ECCF20249C584400FC394F /* Video */,
+				39ECCF21249C584400FC394F /* Audio */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		39ECCF20249C584400FC394F /* Video */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		39ECCF21249C584400FC394F /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		39ECCF22249C588000FC394F /* Encoder */ = {
+			isa = PBXGroup;
+			children = (
+				39ECCF23249C588000FC394F /* Video */,
+				39ECCF24249C588000FC394F /* Audio */,
+			);
+			path = Encoder;
+			sourceTree = "<group>";
+		};
+		39ECCF23249C588000FC394F /* Video */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		39ECCF24249C588000FC394F /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		A63581FDCF6A24830B0587F6 /* Pods */ = {
@@ -552,7 +600,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6E27NAQA2A;
+				DEVELOPMENT_TEAM = S83Z874L7V;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = WebRTCiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -560,7 +608,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zgp.testGCDDemo.WebRTCiOS2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hexing.hexrtcroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.2;
@@ -575,7 +623,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6E27NAQA2A;
+				DEVELOPMENT_TEAM = S83Z874L7V;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = WebRTCiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -583,7 +631,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zgp.testGCDDemo.WebRTCiOS2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hexing.hexrtcroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.2;
